@@ -9,11 +9,29 @@ from dotenv import load_dotenv
 import os
 load_dotenv()  
 
+import firebase_admin
+from firebase_admin import credentials, initialize_app, db
+
+# Initialize Firebase with your credentials
+# (Please handle credentials securely, don't share them here)
+# cred = credentials.Certificate('/workspace/EmailApi/serviceAccountKey.json')
+# initialize_app(cred)
+if not firebase_admin._apps:
+    cred = credentials.Certificate('/workspace/EmailApi/serviceAccountKey.json') 
+    default_app = firebase_admin.initialize_app(cred, {'databaseURL': 'https://internship-demo-7d427-default-rtdb.firebaseio.com'})
+
+
+# Get a reference to your database (use the appropriate service here)
+db_ref = db.reference()
+
+
 def sendemail(request):
     if request.method == "POST":
         sender = 'Chirag Biradar'
         toemail = request.POST.get('to')
         toname = request.POST.get('toname')
+        data = {'toname': toname, 'toemail': toemail}
+        db_ref.push(data)
         fromemail = 'chiragsb16@gmail.com'
         subject = 'Test email for assignment'
         message = 'Thanks for Subscribing!!'

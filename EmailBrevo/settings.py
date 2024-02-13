@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-*l=j$#ihu95v3u@&b&9f)1=wmmvpn5f%x60)9uuh0bth_-s-7&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app', '*']
+ALLOWED_HOSTS = ['.vercel.app', '*', '.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://*.vercel.app','https://*.127.0.0.1','https://*.gitpod.io']
 
 
 # Application definition
