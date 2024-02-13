@@ -70,6 +70,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'EmailBrevo.wsgi.application'
+SCM_DO_BUILD_DURING_DEPLOYMENT=1
 
 
 # Database
